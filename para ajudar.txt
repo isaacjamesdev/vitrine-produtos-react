@@ -1,0 +1,6 @@
+fragment
+propTypes
+bindActionCreator
+import * as 'nomequalquer' from '...'
+
+metodo add([...], newProduct)

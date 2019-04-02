@@ -8,17 +8,17 @@ const INITIAL_STATE = [
     },
     {
         id:2,
-        url:'https://www.pontofrio-imagens.com.br/Control/ArquivoExibir.aspx?IdArquivo=396488751',
+        url:'https://i.ytimg.com/vi/bgDbH-Qh6t8/maxresdefault.jpg',
         preco: 100,
-        titulo: 'TV 45',
+        titulo: 'Calopsita',
         descricao:'CALOPSITA'
     }    
 ]
-export default function prateleira(state, action){
+export default function prateleira(state= INITIAL_STATE, action){
     switch(action.type){
-
-
-
+        case 'LISTAGEM':
+            return INITIAL_STATE;
+              
         default: return state;
     }
 }

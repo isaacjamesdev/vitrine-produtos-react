@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import {Provider} from 'react-redux'
 
 // My-Imports
@@ -9,10 +9,10 @@ import store from './store'
 const App = ()=>{
   return (
     <Provider store={store}>
-      <div>
+      <Fragment>
         <Vitrine/>
         <Formulario/>
-      </div>
+      </Fragment>
     </Provider>
   )
 }
