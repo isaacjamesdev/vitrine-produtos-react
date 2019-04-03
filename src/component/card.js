@@ -11,7 +11,7 @@ import Typography from '@material-ui/core/Typography';
 
 const styles = {
   card: {
-    maxWidth: 220,
+    maxWidth: 175
   },
   media: {
     height: 0,
@@ -22,23 +22,24 @@ const styles = {
 
 function MediaCard(props) {
   const { classes } = props;
+  console.log(props.product);
   return (
     <Card className={classes.card}>
       <CardActionArea>
         <CardMedia
           className={classes.media}
-          image="https://www.pontofrio-imagens.com.br/Control/ArquivoExibir.aspx?IdArquivo=396488751"
-          title="Contemplative Reptile"
+          image={props.product.url}
+          title={props.product.titulo}
         />
         <CardContent>   
-          <Typography gutterBottom variant="h5" component="h2">
-            TV Samsung
+          <Typography gutterBottom variant="h6" component="h6">
+         { props.product.titulo}
           </Typography>
-          <Typography gutterBottom variant="h5" component="h5">
-            preço: R$15
+          <Typography gutterBottom variant="h6" component="h6">
+            {props.product.preco}
           </Typography>
           <Typography component="p">
-           TV 32'
+           {props.product.descricao}
           </Typography>
         </CardContent>
       </CardActionArea>
