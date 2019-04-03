@@ -1,13 +1,14 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import Prateleira from './prateleira'
+
 
 const vitrine = ()=>{
     return (
-    <div>
+      <Fragment>
         <Prateleira nome="promocao"/>
-        {/* <Prateleira nome={'favoritos'}/>
-        <Prateleira nome={'vendidos'}/> */}
-      </div>
+        {/* <Prateleira nome={'comprados'}/>
+        <Prateleira nome={'favoritos'}/> */}
+      </Fragment>
     )
 }
 

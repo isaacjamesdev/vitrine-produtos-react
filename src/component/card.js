@@ -11,7 +11,7 @@ import Typography from '@material-ui/core/Typography';
 
 const styles = {
   card: {
-    maxWidth: 220,
+    maxWidth: 175
   },
   media: {
     height: 0,
@@ -32,10 +32,10 @@ function MediaCard(props) {
           title={props.product.titulo}
         />
         <CardContent>   
-          <Typography gutterBottom variant="h5" component="h2">
+          <Typography gutterBottom variant="h6" component="h6">
          { props.product.titulo}
           </Typography>
-          <Typography gutterBottom variant="h5" component="h5">
+          <Typography gutterBottom variant="h6" component="h6">
             {props.product.preco}
           </Typography>
           <Typography component="p">

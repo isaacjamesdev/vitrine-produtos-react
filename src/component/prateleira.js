@@ -21,7 +21,7 @@ class Prateleira extends Component {
     };
     return (
       <div>
-        <h2>Vertical Mode</h2>
+        <h4>Vertical Mode</h4>
         <Slider {...settings}>
           {
             this.props.produtos.map(product => 
@@ -35,16 +35,12 @@ class Prateleira extends Component {
     );
   }
   carregaProdutos(){
-    this.props.lista(this.props.nome)
+    this.props.listagem(this.props.nome);
   }
-  
   componentDidMount(){
-    
-    // this.carregaProdutos();
+    this.carregaProdutos();
   }
 }
-
-
 // eslint-disable-next-line react/no-typos
 Prateleira.PropTypes = {
   produtos: PropTypes.arrayOf(PropTypes.shape({
@@ -60,11 +56,19 @@ const mapStateToProps = state =>({
   produtos: state.prateleira
 })
 
-const mapDispatchToProps = dispatch => ({
-  lista: nome =>{ 
-    dispatch(PrateleiraApi.lista(nome))
+const mapDispatchToProps = dispatch => {
+  return {
+    listagem: nome =>{ 
+      dispatch(PrateleiraApi.listagem(nome));
+    },
+    favoritos: ()=>{
+      dispatch(PrateleiraApi.favoritos());
+    },
+    cadastrar: produto =>{
+      dispatch(PrateleiraApi.cadastrar(produto));
+    }
   }
-})
+}
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(Prateleira)

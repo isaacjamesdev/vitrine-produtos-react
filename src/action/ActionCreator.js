@@ -1,3 +1,13 @@
 export function listagem(produtos){
-    return {type: 'LISTAGEM', payload:{produtos: produtos}}
+    console.log('reducer listagem');
+    
+    return {type: 'LISTAGEM', produtos: produtos}
+}
+
+export function favoritos(produtos){
+    return {type: 'FAVORITOS', produtos: produtos}
+}
+
+export function cadastrar(produto){
+    return {type: 'CADASTRAR', produto}
 }
