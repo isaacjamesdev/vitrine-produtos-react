@@ -17,7 +17,7 @@ const INITIAL_STATE = [
 export default function prateleira(state= INITIAL_STATE, action){
     switch(action.type){
         case 'LISTAGEM':
-            return INITIAL_STATE;
+            return [];
               
         default: return state;
     }

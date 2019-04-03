@@ -31,6 +31,7 @@ class Prateleira extends Component {
             )
           }
         </Slider>
+        <button onClick={()=> this.props.dispatch({ type: 'LISTAGEM' })}></button>
       </div>
     );
   }
@@ -67,4 +68,4 @@ const mapDispatchToProps = dispatch => ({
 })
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Prateleira)
+export default connect(mapStateToProps)(Prateleira)
