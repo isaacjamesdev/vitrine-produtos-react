@@ -12,7 +12,6 @@ import PrateleiraApi from '../service/PrateleiraAPI'
 class Prateleira extends Component {
   
   render() {
-    console.log(this.props);  
     const settings = {
       dots: true,
       infinite: false,
@@ -20,10 +19,7 @@ class Prateleira extends Component {
       slidesToShow: 3,
       slidesToScroll: 3
     };
-    console.log('olhando a props');
-    console.log(this.props.favoritos);
-    
-    
+
     if(this.props.nome ==='promocao'){
       return (
         <div>
@@ -75,20 +71,14 @@ class Prateleira extends Component {
     this.props.listagem(this.props.nome);
   }
   componentDidMount(){
-    console.log('props :');
     this.carregaProdutos();
   }
 }
 // eslint-disable-next-line react/no-typos
-// Prateleira.PropTypes = {
-//   produtos: PropTypes.arrayOf(PropTypes.shape({
-//     descricao: PropTypes.string,
-//     id: PropTypes.number,
-//     preco: PropTypes.number,
-//     titulo: PropTypes.string,
-//     url: PropTypes.string
-//   })).isRequired,
-// }
+Prateleira.PropTypes = ({
+  nome: PropTypes.string
+  }.isRequired
+)
 
 const mapStateToProps = state =>({
   promocoes: state.prateleira.promocoes,

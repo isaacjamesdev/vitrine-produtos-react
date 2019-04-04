@@ -22,7 +22,6 @@ const styles = {
 
 function MediaCard(props) {
   const { classes } = props;
-  console.log(props.product);
   return (
     <Card className={classes.card}>
       <CardActionArea>

@@ -4,10 +4,6 @@ import {connect} from 'react-redux'
 import PrateleiraApi from '../service/PrateleiraAPI';
 
 class Formulario extends Component {
-    constructor(props) {
-      super(props);  
-      this.handleSubmit = this.handleSubmit.bind(this);
-    }
   
     handleSubmit(event) {
       let produto = {
@@ -38,9 +34,9 @@ class Formulario extends Component {
             <Form.Group controlId="exampleForm.ControlSelect1">
                 <Form.Label>Categoria</Form.Label>
                     <Form.Control as="select" ref={(input)=> this.categoria = input}>
-                        <option value='comprados' >Comprados</option>
-                        <option value='favoritos'>Favoritos</option>
                         <option value='promocoes'>Promoções</option>
+                        <option value='favoritos'>Favoritos</option>
+                        <option value='comprados' >Comprados</option>
                     </Form.Control>
                 </Form.Group>
             <Button type='submit'>Cadastrar</Button>
@@ -48,17 +44,13 @@ class Formulario extends Component {
       );
     }
   }
-  const mapStateToProps = state =>({
-    
-  })
 
   const mapDispatchToProps = dispatch => {
     return {
-      
       cadastrar: produto =>{
         dispatch(PrateleiraApi.cadastrar(produto));
       }
     }
   }
 
-  export default connect(mapStateToProps,mapDispatchToProps)(Formulario);
+  export default connect(null, mapDispatchToProps)(Formulario);
