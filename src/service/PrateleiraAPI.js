@@ -22,27 +22,21 @@ const favoritos = {
 } 
 
 export default class PrateleiraApi{
-    static lista(nome){
+    static listagem(nome){
         return dispatch => {
             console.log('veio ate api');
-            let produtos;
-            switch (nome) {
-                case 'promocao': 
-                    produtos = promocao;
-                break;
-                case 'comprados':
-                    produtos = comprados;
-                break; 
-                case 'favoritos':
-                    produtos = favoritos;
-                break;
-             
-                default:
-                    produtos = Error('nome prateleira invalido')
-            }
-            console.log('veio ate api');
-            dispatch(ActionCreator.listagem(produtos));
-            return produtos;
+            dispatch(ActionCreator.listagem());
         }         
+    }
+    static favoritos (){
+        return dispatch => {
+                dispatch(ActionCreator.favoritos([]))    
+        }
+    }
+    static cadastrar (produto){
+        console.log(produto);
+        
+        return dispatch => 
+                dispatch(ActionCreator.cadastrar(produto))    
     }
 }

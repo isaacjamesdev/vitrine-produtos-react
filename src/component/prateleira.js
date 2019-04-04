@@ -12,6 +12,7 @@ import PrateleiraApi from '../service/PrateleiraAPI'
 class Prateleira extends Component {
   
   render() {
+    console.log(this.props);  
     const settings = {
       dots: true,
       infinite: false,
@@ -19,53 +20,92 @@ class Prateleira extends Component {
       slidesToShow: 3,
       slidesToScroll: 3
     };
-    return (
-      <div>
-        <h2>Vertical Mode</h2>
-        <Slider {...settings}>
-          {
-            this.props.produtos.map(product => 
-              <div key={product.id}>
+    console.log('olhando a props');
+    console.log(this.props.favoritos);
+    
+    
+    if(this.props.nome ==='promocao'){
+      return (
+        <div>
+          <Slider {...settings}>
+            {
+              this.props.promocoes.map(product => 
+                <div key={product.id}>
                   <Card product={product}/>
                 </div>
-            )
-          }
-        </Slider>
-        <button onClick={()=> this.props.dispatch({ type: 'LISTAGEM' })}></button>
-      </div>
-    );
+              )
+            }
+          </Slider>
+        </div>
+      );
+    }
+    if(this.props.nome ==='favoritos'){
+      return (
+        <div>
+          <Slider {...settings}>
+            {
+              this.props.favoritos.map(product => 
+                <div key={product.id}>
+                  <Card product={product}/>
+                </div>
+              )
+            }
+          </Slider>
+        </div>
+      );
+    }
+    if(this.props.nome ==='comprados'){
+      return (
+        <div>
+            <Slider {...settings}>
+            {
+              this.props.comprados.map(product => 
+                <div key={product.id}>
+                  <Card product={product}/>
+                </div>
+              )
+            }
+          </Slider>
+        </div>
+      );
+    }
   }
+
   carregaProdutos(){
-    this.props.lista(this.props.nome)
+    this.props.listagem(this.props.nome);
   }
-  
   componentDidMount(){
-    
-    // this.carregaProdutos();
+    console.log('props :');
+    this.carregaProdutos();
   }
 }
-
-
 // eslint-disable-next-line react/no-typos
-Prateleira.PropTypes = {
-  produtos: PropTypes.arrayOf(PropTypes.shape({
-    descricao: PropTypes.string,
-    id: PropTypes.number,
-    preco: PropTypes.number,
-    titulo: PropTypes.string,
-    url: PropTypes.string
-  })).isRequired,
-}
+// Prateleira.PropTypes = {
+//   produtos: PropTypes.arrayOf(PropTypes.shape({
+//     descricao: PropTypes.string,
+//     id: PropTypes.number,
+//     preco: PropTypes.number,
+//     titulo: PropTypes.string,
+//     url: PropTypes.string
+//   })).isRequired,
+// }
 
 const mapStateToProps = state =>({
-  produtos: state.prateleira
+  promocoes: state.prateleira.promocoes,
+  comprados: state.prateleira.comprados,
+  favoritos: state.prateleira.favoritos
 })
 
-const mapDispatchToProps = dispatch => ({
-  lista: nome =>{ 
-    dispatch(PrateleiraApi.lista(nome))
+const mapDispatchToProps = dispatch => {
+  return {
+    listagem: nome =>{ 
+      dispatch(PrateleiraApi.listagem(nome));
+    },
+    cadastrar: produto =>{
+      dispatch(PrateleiraApi.cadastrar(produto));
+    }
   }
-})
+}
 
 
-export default connect(mapStateToProps)(Prateleira)
+export default connect(mapStateToProps, mapDispatchToProps)(Prateleira)

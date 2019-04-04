@@ -1,15 +1,25 @@
-import React from 'react';
+import React, {Fragment} from 'react';
+import CollapseContent from './CollapseContent'
+
 import Prateleira from './prateleira'
 
-const cards = ['teste','gfdi']
 
-const vitrine =  ()=>{
+const vitrine = ()=>{
     return (
-    <div>
-        {/* <Prateleira nome={'promoção'}/> */}
-        {/* {/* <Prateleira nome={'favoritos'}/> */}
-        <Prateleira nome={'vendidos'}/> */}
-      </div>
+      <Fragment>
+        <CollapseContent nome='Promoções'>
+          <Prateleira nome="promocao"/>
+        </CollapseContent>
+      
+        <CollapseContent nome='Comprados'>
+         <Prateleira nome={'comprados'}/>
+        </CollapseContent>
+      
+        <CollapseContent nome='Favoritos'>
+           <Prateleira nome={'favoritos'}/>
+        </CollapseContent>
+        
+      </Fragment>
     )
 }
 
