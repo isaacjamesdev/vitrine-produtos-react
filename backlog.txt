@@ -1,4 +1,4 @@
--Search (corrigir a logica)
+-Search (corrigir a logica do estado inicial)
 -mover entre prateleiras (com modal ou hover) - FALTA FAZER
 -integração com API - FALTA FAZER
 -routers(home, promocoes, favoritos, comprados, cadastro) - FAZER AGORA

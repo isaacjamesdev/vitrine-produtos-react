@@ -93,12 +93,11 @@ export default function prateleira(state= INITIAL_STATE, action){
 
         case 'SEARCH':
             return {
-                comprados: state.comprados.filter(produto => produto.titulo.toLowerCase().indexOf(action.titulo.toLowerCase()) !== -1),
-                favoritos: state.favoritos.filter(produto => produto.titulo.toLowerCase().indexOf(action.titulo.toLowerCase()) !== -1),
-                promocoes: state.promocoes.filter(produto => produto.titulo.toLowerCase().indexOf(action.titulo.toLowerCase()) !== -1)
+                comprados: state.comprados.filter(produto => produto.titulo.toLowerCase().indexOf(action.query.toLowerCase()) !== -1),
+                favoritos: state.favoritos.filter(produto => produto.titulo.toLowerCase().indexOf(action.query.toLowerCase()) !== -1),
+                promocoes: state.promocoes.filter(produto => produto.titulo.toLowerCase().indexOf(action.query.toLowerCase()) !== -1)
             };
         
         default: return state;
     }
 }
-https://gateway.marvel.com/v1/public/characters?ts=${timestamp}&orderBy=name&limit=10&apikey=PUBLIC_KEY&hash=${hash.hex()}

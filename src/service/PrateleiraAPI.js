@@ -1,4 +1,4 @@
-import * as ActionCreator from '../action/ActionCreator';
+import * as ActionCreator from '../store/action/ActionCreator'
 
 export default class PrateleiraApi{
     static listagem(nome){
@@ -10,10 +10,10 @@ export default class PrateleiraApi{
         return dispatch => 
             dispatch(ActionCreator.cadastrar(produto)); 
     }
-    static search(titulo){
+    static search(query){
         return dispatch => {
-            if(titulo)
-                dispatch(ActionCreator.search(titulo));
+            if(query)
+                dispatch(ActionCreator.search(query));
             else
                 dispatch(ActionCreator.listagem('LISTAGEM'));
         }

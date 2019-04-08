@@ -11,14 +11,14 @@ class Search extends Component {
   
     handleSubmit(event) {
       event.preventDefault();
-      this.props.search(this.titulo.value);
+      this.props.search(this.query.value);
     }
 
     render() {
       return (
         <Form onSubmit={e => this.handleSubmit(e)}>
             <Form.Group controlId="exampleForm.ControlInput1">
-                <Form.Control type="text" placeholder="Buscar" onChange={e => this.handleSubmit(e)} ref={(input)=> this.titulo = input} />
+                <Form.Control type="text" placeholder="Buscar" onChange={e => this.handleSubmit(e)} ref={(input)=> this.query = input} />
             </Form.Group>
         </Form>
       );
@@ -26,8 +26,8 @@ class Search extends Component {
   }
   const mapDispatchToProps = dispatch => {
     return {
-      search: titulo =>
-        dispatch(PrateleiraApi.search(titulo))
+      search: query =>
+        dispatch(PrateleiraApi.search(query))
     }
   }
 

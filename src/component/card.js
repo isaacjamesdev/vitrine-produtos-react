@@ -43,9 +43,6 @@ function MediaCard(props) {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size="small" color="primary" onClick={()=>{alert('butão valha')}} >
-            valha
-        </Button>
         <Button size="small" color="primary" onClick={()=>{alert('butão Learn more')}}>
           Learn More
         </Button>
