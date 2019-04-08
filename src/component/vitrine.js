@@ -1,7 +1,7 @@
 import React, {Fragment, Component} from 'react';
 import {connect} from 'react-redux'
 
-import CollapseContent from './CollapseContent'
+import CollapseContent from './CollapseComponente'
 import PrateleiraApi from '../service/PrateleiraAPI'
 import Prateleira from './prateleira'
 

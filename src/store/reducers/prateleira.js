@@ -3,12 +3,11 @@ const INITIAL_STATE = {
   favoritos: [],
   comprados:[],
   promocoes:[],
-  search: []
+  busca: []
 };
 
 
 export default function prateleira(state= INITIAL_STATE, action){
-
     switch(action.type){
         case 'LISTAGEM':
             return {...state, produtos: [...action.payload.data.results]};
@@ -23,7 +22,7 @@ export default function prateleira(state= INITIAL_STATE, action){
             return {...state, promocoes: [...state.promocoes, action.payload.produto]};
             
         case 'SEARCH':
-            return {...state, search: state.produtos.filter(produto => produto.title.toLowerCase().indexOf(action.payload.query.toLowerCase()) !== -1)};
+            return {...state, busca: state.produtos.filter(produto => produto.title.toLowerCase().indexOf(action.payload.query.toLowerCase()) !== -1)};
         
         default: return state;
     }

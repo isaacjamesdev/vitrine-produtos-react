@@ -5,7 +5,7 @@ import store from './store';
 // My-Components;
 import Vitrine from './component/vitrine';
 import Header from './component/Header';
-import Search from './component/Search';
+import Busca from './component/Busca';
 
 
 const App = ()=>{
@@ -13,7 +13,7 @@ const App = ()=>{
     <Provider store={store}>
         <Container>
           <Header/>
-          <Search/>
+          <Busca/>
           <Vitrine/>
         </Container>
     </Provider>

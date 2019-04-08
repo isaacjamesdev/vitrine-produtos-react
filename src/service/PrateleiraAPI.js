@@ -9,10 +9,7 @@ Axios.create({
     baseURL:'http://gateway.marvel.com/v1/public/'
 })
 
-
-// my hasg = 2d744ffccd666aacf33f89b0eefeeb06
 export default class PrateleiraApi{
-    
     static listagem(){
         return dispatch => {
             fetch(url)
@@ -21,17 +18,16 @@ export default class PrateleiraApi{
                 dispatch(ActionCreator.listagem(data));
                 return data;
             });
-        // return dispatch => {
         }         
     }
     static cadastrar(produto, prateleira){
         return dispatch => 
             dispatch(ActionCreator.cadastrar(produto, prateleira)); 
     }
-    static search(query){
+    static busca(query){
         return dispatch => {
             if(query)
-                dispatch(ActionCreator.search(query));
+                dispatch(ActionCreator.busca(query));
         }
     }
 

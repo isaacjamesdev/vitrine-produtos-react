@@ -4,7 +4,6 @@ import {Collapse, Button} from 'react-bootstrap'
 export default class CollapseContent extends React.Component {
   constructor(props, context) {
     super(props, context);
-
     this.state = {
       open: true,
     };
