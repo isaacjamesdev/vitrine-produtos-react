@@ -1,40 +1,57 @@
-import React, {Fragment} from 'react';
-import Axios from 'axios';
+import React, {Fragment, Component} from 'react';
+import {connect} from 'react-redux'
+
 import CollapseContent from './CollapseContent'
-
+import PrateleiraApi from '../service/PrateleiraAPI'
 import Prateleira from './prateleira'
-const url = 'https://gateway.marvel.com:443/v1/public/characters?ts=1&apikey=52cd47ed61eebd8f62bdf9d8922a64f8&hash=2d744ffccd666aacf33f89b0eefeeb06'
-const request = ()=>{
-  Axios.get(url)
-    .then(res => {
-      console.log(res);
-      
-    })
-}
 
-const vitrine = ()=>{
-    return (
-      <Fragment>
-        <button onClick={()=> request()}>Clica em mim</button>
+class vitrine extends Component{
+    render(){
+      return (
+        <Fragment>
+          <div>
+          <CollapseContent nome='Todos os Produtos'>
+            <Prateleira produtos={this.props.produtos}/>
+          </CollapseContent>
+        </div>
         <div>
-        <CollapseContent nome='Promoções'>
-          <Prateleira nome="promocao"/>
-        </CollapseContent>
-      </div>
-      <div>
-        <CollapseContent nome='Favoritos'>
-           <Prateleira nome={'favoritos'}/>
-        </CollapseContent>
-      </div>
-      <div>
-        <CollapseContent nome='Comprados'>
-         <Prateleira nome={'comprados'}/>
-        </CollapseContent>
-      </div>
-      </Fragment>
-    )
+          <CollapseContent nome='Promoções'>
+            <Prateleira produtos={this.props.promocoes}/>
+          </CollapseContent>
+        </div>
+        <div>
+          <CollapseContent nome='Favoritos'>
+             <Prateleira produtos={this.props.favoritos}/>
+          </CollapseContent>
+        </div>
+        <div>
+          <CollapseContent nome='Comprados'>
+           <Prateleira produtos={this.props.comprados}/>
+          </CollapseContent>
+        </div>
+        </Fragment>
+      )
+    }
+
+    componentWillMount(){
+      this.props.listagem();
+    }
 }
 
-// const promocao = / 
+const mapStateToProps = state =>({
+  promocoes: state.prateleira.promocoes,
+  comprados: state.prateleira.comprados,
+  favoritos: state.prateleira.favoritos,
+  produtos: state.prateleira.produtos
+})
 
-export default vitrine;
+const mapDispatchToProps = dispatch => {
+  return {
+    listagem: () =>{ 
+      dispatch(PrateleiraApi.listagem());
+    }
+  }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(vitrine)

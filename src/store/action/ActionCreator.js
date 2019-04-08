@@ -1,20 +1,13 @@
-export function listagem(){
-    return {type: 'LISTAGEM'}
-}
 
-export function cadastrar(produto){
-    return {type: 'CADASTRAR_'+produto.categoria.toUpperCase(), produto}
+export function cadastrar(produto, prateleira){
+    return {type: 'CADASTRAR_'+prateleira.toUpperCase(), payload: {produto: produto}}
 }
 
 export function search(query){
-    return {type: 'SEARCH', query}
+    return {type: 'SEARCH', payload: {query: query}}
 }
 
 
-export function listagemRequest(){
-    return {type: 'LISTAGEM_REQUEST'}
-}
-
-export function listagemSuccess(){
-    return {type: 'LISTAGEM_SUCCESS'}
+export function listagem(data){    
+    return {type: 'LISTAGEM', payload: data}
 }
