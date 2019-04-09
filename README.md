@@ -1,7 +1,8 @@
 # vitrine-produtos-react 
 A aplicação consume dados da [Marvel API](https://developer.marvel.com/). 
-Com os dados listados, você poderá movê-los entre as prateleiras já cadastras: Comprados, Promoções, Favoritos.
-Há possibilidade de adicionar um objeto localmente. 
+Com os dados listados, você poderá movê-los entre as prateleiras já cadastradas:
+Comprados, Promoções, Favoritos.
+Há também a possibilidade de adicionar dados a essas prateleiras localmente.
 
 ## Pré-Requisitos
 ### Node.Js
