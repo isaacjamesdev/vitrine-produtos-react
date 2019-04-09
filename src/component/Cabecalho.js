@@ -7,7 +7,7 @@ const header = ()=>{
                 <div className="container">
                     <h1>Product Comics</h1>
                     <blockquote className="blockquote text-center">
-                        <p className="mb-0">Welcome</p>
+                        <p className="mb-0">Bem vindo</p>
                     </blockquote>
                 </div>
             </div>

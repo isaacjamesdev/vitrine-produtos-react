@@ -1,0 +1,9 @@
+-dar feedback ao usuário - 9:50 - DONE
+-cadastrar - 9:15 - DONE
+-refatorar para português - DONE
+-Remover da prateleira - DONE
+
+-avisar em qual prateleira estar
+-ajeitar slick
+
+-colocar default props e 

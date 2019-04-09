@@ -1,42 +1,39 @@
-import * as ActionCreator from '../action/ActionCreator';
-const promocao = {
-    id: Math.random(),
-    url:'https://portal-vendedor10.curriculum.com.br/wp-content/uploads/2016/07/Promo%C3%A7%C3%A3o-%C3%A9-a-alma-do-neg%C3%B3cio.png',
-    preco: 25,
-    titulo: 'PROMOCAO',
-    descricao:'PROMOCAO'
-}
-const comprados = {
-    id: Math.random(),
-    url:'http://prosperatecnologia.com.br/blog/wp-content/uploads/2018/04/registrar-compras-650x350.jpg',
-    preco: 100,
-    titulo: 'COMPRADOS',
-    descricao:'COMRPADOS'
-}
-const favoritos = {
-    id: Math.random(),
-    url:'https://1.bp.blogspot.com/-VdH3GaedFDQ/WllWwPjhcNI/AAAAAAAAFIw/Pzv83YH77UYK_tIxTNRSlXjhRjTG_OQSwCLcBGAs/s1600/Favoritos.jpg',
-    preco: 15,
-    titulo: 'FAVORITO',
-    descricao:'FAVORITO'
-} 
+import * as ActionCreator from '../store/action/ActionCreator';
+import Axios from 'axios';
+const hash = '2d744ffccd666aacf33f89b0eefeeb06'
+const key = '52cd47ed61eebd8f62bdf9d8922a64f8'
+const baseUrl= 'http://gateway.marvel.com/v1/public/'
+const parameter= 'comics'
+const url = `${baseUrl}${parameter}?ts=1&apikey=${key}&hash=${hash}`
+Axios.create({
+    baseURL:'http://gateway.marvel.com/v1/public/'
+})
 
 export default class PrateleiraApi{
-    static listagem(nome){
+    static listagem(){
         return dispatch => {
-            console.log('veio ate api');
-            dispatch(ActionCreator.listagem());
+            fetch(url)
+            .then(response => response.json())
+            .then(data => {         
+                dispatch(ActionCreator.listagem(data));
+                return data;
+            });
         }         
     }
-    static favoritos (){
+    static remover(produto, prateleira){
+        return dispatch => 
+            dispatch(ActionCreator.remover(produto, prateleira)); 
+    }
+
+    static cadastrar(produto, prateleira){
+        return dispatch => 
+            dispatch(ActionCreator.cadastrar(produto, prateleira)); 
+    }
+    static busca(query){
         return dispatch => {
-                dispatch(ActionCreator.favoritos([]))    
+            if(query)
+                dispatch(ActionCreator.busca(query));
         }
     }
-    static cadastrar (produto){
-        console.log(produto);
-        
-        return dispatch => 
-                dispatch(ActionCreator.cadastrar(produto))    
-    }
+
 }
