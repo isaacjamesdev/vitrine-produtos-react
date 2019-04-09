@@ -8,6 +8,28 @@ import "slick-carousel/slick/slick-theme.css";
 
 import Card from './card'
 
+function SampleNextArrow(props) {
+  const { className, style, onClick } = props;
+  return (
+    <div
+      className={className}
+      style={{ ...style, display: "block", background: "black" }}
+      onClick={onClick}
+    />
+  );
+}
+
+function SamplePrevArrow(props) {
+  const { className, style, onClick } = props;
+  return (
+    <div
+      className={className}
+      style={{ ...style, display: "block", background: "black" }}
+      onClick={onClick}
+    />
+  );
+}
+
 
 class Prateleira extends Component {
   
@@ -17,12 +39,14 @@ class Prateleira extends Component {
       infinite: false,
       speed: 500,
       slidesToShow: 5,
-      slidesToScroll: 3
+      slidesToScroll: 3,
+      nextArrow: <SampleNextArrow />,
+      prevArrow: <SamplePrevArrow />
     };
 
     return (
       <div>
-          <Slider {...settings}>
+          <Slider {...settings} >
           {
             this.props.produtos.map(produto => 
               <div key={produto.id}>

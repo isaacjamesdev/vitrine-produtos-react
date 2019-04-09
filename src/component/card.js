@@ -31,7 +31,7 @@ import PrateleiraApi from '../service/PrateleiraAPI'
     return (
       <div>
         <Card style={{ width: '12rem' }}>
-        <Card.Img variant="top" src={tratarPath(this.props.produto.thumbnail)}/>
+        <Card.Img variant="top" src={this.props.tratarPath(this.props.produto.thumbnail)}/>
         <Card.Body>
           <Card.Title>{this.props.produto.title}</Card.Title>
           <Card.Text>
@@ -57,14 +57,14 @@ import PrateleiraApi from '../service/PrateleiraAPI'
   }
 }
 
-const tratarPath = (thumbnail) =>{
-  return thumbnail.extension ? thumbnail.path+'/portrait_xlarge.'+ thumbnail.extension : thumbnail.path
-}
 
 const mapDispatchToProps = dispatch => {
   return {
     moveTo: (produto, prateleira) =>{
       dispatch(PrateleiraApi.cadastrar(produto, prateleira));
+    },
+    tratarPath: (thumbnail) =>{
+      return thumbnail.extension ? thumbnail.path+'/portrait_xlarge.'+ thumbnail.extension : thumbnail.path
     }
   }
 }

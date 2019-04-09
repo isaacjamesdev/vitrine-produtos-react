@@ -2,8 +2,9 @@
 -cadastrar - 9:15 - DONE
 -refatorar para português - DONE
 -Remover da prateleira - DONE
+-Read.me - DONE
+-ajeitar slick - DONE
 
 -avisar em qual prateleira estar
--ajeitar slick
 
--colocar default props e 
+-colocar PropTypes
