@@ -20,6 +20,11 @@ export default class PrateleiraApi{
             });
         }         
     }
+    static remover(produto, prateleira){
+        return dispatch => 
+            dispatch(ActionCreator.remover(produto, prateleira)); 
+    }
+
     static cadastrar(produto, prateleira){
         return dispatch => 
             dispatch(ActionCreator.cadastrar(produto, prateleira)); 

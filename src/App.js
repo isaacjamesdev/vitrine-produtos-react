@@ -4,7 +4,7 @@ import {Container} from 'react-bootstrap';
 import store from './store';
 // My-Components;
 import Vitrine from './component/vitrine';
-import Header from './component/Header';
+import Cabecalho from './component/Cabecalho';
 import Busca from './component/Busca';
 
 
@@ -12,7 +12,7 @@ const App = ()=>{
   return (
     <Provider store={store}>
         <Container>
-          <Header/>
+          <Cabecalho/>
           <Busca/>
           <Vitrine/>
         </Container>
