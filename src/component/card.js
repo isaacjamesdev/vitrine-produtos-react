@@ -3,7 +3,13 @@ import Card from 'react-bootstrap/Card'
 import {Button} from 'react-bootstrap'
 import {connect} from 'react-redux'
 import Modal from 'react-bootstrap/Modal'
+// material-ui
+import IconButton from '@material-ui/core/IconButton';
+import FavoriteIcon from '@material-ui/icons/FavoriteBorder';
+import BookMarkIcon from '@material-ui/icons/BookmarkBorder';
+import MoneyOff from '@material-ui/icons/MoneyOffOutlined';
 
+// my-imports
 import PrateleiraApi from '../service/PrateleiraAPI'
   
   
@@ -14,10 +20,8 @@ import PrateleiraApi from '../service/PrateleiraAPI'
     this.state = {
       show: false,
     };
-    
     this.handleShow = this.handleShow.bind(this);
     this.handleClose = this.handleClose.bind(this);
-
   }
 
   handleClose() {
@@ -30,16 +34,19 @@ import PrateleiraApi from '../service/PrateleiraAPI'
   render(){
     return (
       <div>
-        <Card style={{ width: '12rem' }}>
+        <Card className="card">
         <Card.Img variant="top" src={this.props.tratarPath(this.props.produto.thumbnail)}/>
         <Card.Body>
-          <Card.Title>{this.props.produto.title}</Card.Title>
-          <Card.Text>
-            {this.props.produto.variantDescription}
-          </Card.Text>
-          <Button variant="outline-secondary" onClick={() => {this.handleShow(); this.props.moveTo(this.props.produto, 'PROMOCOES')}}>+ Promoções</Button>
-          <Button variant="outline-secondary" onClick={() => {this.handleShow(); this.props.moveTo(this.props.produto, 'FAVORITOS')}}>+ Favoritos</Button>
-          <Button variant="outline-secondary" onClick={() => {this.handleShow(); this.props.moveTo(this.props.produto, 'COMPRADOS')}}>+ Comprados</Button>
+          <Card.Title className="title" >{this.props.produto.title}</Card.Title>
+          <IconButton className="icon" onClick={() => {this.handleShow(); this.props.moveTo(this.props.produto, 'PROMOCOES')}}>
+            <FavoriteIcon />
+          </IconButton>
+          <IconButton className="icon" onClick={() => {this.handleShow(); this.props.moveTo(this.props.produto, 'FAVORITOS')}}>
+            <BookMarkIcon /> 
+          </IconButton>
+          <IconButton className="icon" onClick={() => {this.handleShow(); this.props.moveTo(this.props.produto, 'COMPRADOS')}}>
+            <MoneyOff />
+          </IconButton>
         </Card.Body>
         <Modal show={this.state.show} onHide={this.handleClose}>
           <Modal.Header closeButton>

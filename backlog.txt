@@ -4,7 +4,16 @@
 -Remover da prateleira - DONE
 -Read.me - DONE
 -ajeitar slick - DONE
+==============
 
--avisar em qual prateleira estar
+-modal no form - DONE
+--------TO DO--------
+-TextArea na desrição do form
+*Card
+    -tamanho fix no modal
+    -avisar em qual prateleira estar
+    -limites de caracters
+    -ler mais
+
 
 -colocar PropTypes
