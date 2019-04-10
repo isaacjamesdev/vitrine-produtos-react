@@ -5,91 +5,88 @@ import Modal from 'react-bootstrap/Modal'
 
 import PrateleiraApi from '../service/PrateleiraAPI';
 
-
 class Formulario extends Component {
-    constructor(props, context) {
-      super(props, context);
-
-      this.handleShow = this.handleShow.bind(this);
-      this.handleClose = this.handleClose.bind(this);
-      this.handleSubmit = this.handleSubmit.bind(this);
-
+    constructor(props) {
+      super(props);  
       this.state = {
         show: false,
       };
+      this.handleSubmit = this.handleSubmit.bind(this);
+      
+      this.handleShow = this.handleShow.bind(this);
+      this.handleClose = this.handleClose.bind(this);
+  
     }
   
     handleSubmit(event) {
       let produto = {
         id: Math.floor(Math.random() * 11),
-        titulo: this.titulo.value,
-        descricao: this.descricao.value,
-        preco: this.preco.value,
-        url: this.url.value,
-        categoria: this.categoria.value
+        title: this.titulo.value,
+        variantDescription: this.descricao.value,
+        thumbnail: {
+          path: this.url.value,
+          extension: undefined
+        },
+        prateleira: this.prateleira.value
       }
       event.preventDefault();
-      this.handleClose();
-      console.log(produto);
-      
-      // this.props.cadastrar(produto);
-    }
+      this.titulo.value = null
+      this.url.value = null
+      this.descricao.value = null
 
+      this.props.cadastrar(produto, produto.prateleira);
+      // eslint-disable-next-line no-unused-expressions
+      this.handleShow();
+    }
     handleClose() {
       this.setState({ show: false });
     }
-
+  
     handleShow() {
       this.setState({ show: true });
     }
-
     render() {
       return (
-        <>
-              <Button variant="primary" onClick={this.handleShow}>
-                Cadastro
-              </Button>
+        <Form onSubmit={e => this.handleSubmit(e)}>
+            <Form.Group controlId="exampleForm.ControlInput1">
+                <Form.Label>Titulo do Produto</Form.Label>
+                <Form.Control type="text" ref={(input)=> this.titulo = input} />
+                <Form.Label>descrição</Form.Label>
+                <Form.Control type="text" ref={(input)=> this.descricao = input} />
+                <Form.Label>URL da imagem</Form.Label>
+                <Form.Control type="text" ref={(input)=> this.url = input} />
+            </Form.Group>
+            <Form.Group controlId="exampleForm.ControlSelect1">
+                <Form.Label>Categoria</Form.Label>
+                    <Form.Control as="select" ref={(input)=> this.prateleira = input}>
+                        <option value='comprados' >Comprados</option>
+                        <option value='favoritos'>Favoritos</option>
+                        <option value='promocoes'>Promoções</option>
+                    </Form.Control>
+                </Form.Group>
+            <Button type='submit'>Cadastrar</Button>
 
-              <Modal show={this.state.show} onHide={this.handleClose}>
-                <Modal.Header closeButton>
-                  <Modal.Title>Modal heading</Modal.Title>
-                </Modal.Header>
-                
-                <Modal.Body>
-                  <Form onSubmit={e => this.handleSubmit(e)}>
-                    <Form.Group controlId="exampleForm.ControlInput1">
-                        <Form.Label>Titulo do Produto</Form.Label>
-                        <Form.Control type="text" ref={(input)=> this.titulo = input} />
-                        <Form.Label>descrição</Form.Label>
-                        <Form.Control type="text" ref={(input)=> this.descricao = input} />
-                        <Form.Label>URL da imagem</Form.Label>
-                        <Form.Control type="text" ref={(input)=> this.url = input} />
-                    </Form.Group>
-                    <Form.Group controlId="exampleForm.ControlSelect1">
-                        <Form.Label>Prateleira</Form.Label>
-                            <Form.Control as="select" ref={(input)=> this.categoria = input}>
-                                <option value='comprados' >Comprados</option>
-                                <option value='favoritos'>Favoritos</option>
-                                <option value='promocoes'>Promoções</option>
-                            </Form.Control>
-                    </Form.Group>
-                  </Form>
-                </Modal.Body>
-                <Modal.Footer>
-                  <Button variant="secondary" onClick={this.handleClose}>
-                    Close
-                  </Button>
-                  <Button type='submit' onClick={this.handleSubmit}>
-                    Save Changes
-                  </Button>
-                </Modal.Footer>
-              </Modal>  
-          <div>
-            <p></p>
-          </div>
-        </>
+            <Modal show={this.state.show} onHide={this.handleClose}>
+              <Modal.Header closeButton>
+                <Modal.Title>Objeto cadastrado</Modal.Title>
+              </Modal.Header>
+              <Modal.Footer>
+                <Button variant="secondary" onClick={this.handleClose}>
+                  Ok
+                </Button>
+              </Modal.Footer>
+            </Modal>
+        </Form>
       );
     }
   }
 
-  export default connect(null,null)(Formulario);
+  const mapDispatchToProps = dispatch => {
+    return {
+      cadastrar: (produto,prateleira) =>{
+        dispatch(PrateleiraApi.cadastrar(produto, prateleira));
+      }
+    }
+  }
+
+  export default connect(null,mapDispatchToProps)(Formulario);
