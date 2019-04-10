@@ -4,7 +4,6 @@ import {connect} from 'react-redux'
 import CollapseContent from './CollapseComponente'
 import PrateleiraApi from '../service/PrateleiraAPI'
 import Prateleira from './prateleira'
-import Formulario from './formulario'
 
 class vitrine extends Component{
     render(){
@@ -28,11 +27,6 @@ class vitrine extends Component{
         <div>
           <CollapseContent nome='Comprados'>
            <Prateleira nome = 'comprados' produtos={this.props.comprados}/>
-          </CollapseContent>
-        </div>
-        <div>
-          <CollapseContent nome='Cadastro'>
-           <Formulario/>
           </CollapseContent>
         </div>
         </Fragment>

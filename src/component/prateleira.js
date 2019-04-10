@@ -38,8 +38,8 @@ class Prateleira extends Component {
       dots: true,
       infinite: false,
       speed: 500,
-      slidesToShow: 5,
-      slidesToScroll: 3,
+      slidesToShow: 4,
+      slidesToScroll: 4,
       nextArrow: <SampleNextArrow />,
       prevArrow: <SamplePrevArrow />
     };
