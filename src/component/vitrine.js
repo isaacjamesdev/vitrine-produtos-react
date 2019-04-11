@@ -1,7 +1,9 @@
 import React, {Fragment, Component} from 'react';
 import {connect} from 'react-redux'
+import FavoriteIcon from '@material-ui/icons/FavoriteBorder';
+import LocalOffer from '@material-ui/icons/LocalOffer';
+import CheckCircleOutlineOutlined from '@material-ui/icons/CheckCircleOutlineOutlined';
 
-import CollapseContent from './CollapseComponente'
 import PrateleiraApi from '../service/PrateleiraAPI'
 import Prateleira from './prateleira'
 
@@ -10,25 +12,21 @@ class vitrine extends Component{
       return (
         <Fragment>
           <div>
-          <CollapseContent nome='Todos os Produtos'>
-            <Prateleira nome = '' produtos={this.props.produtos}/>
-          </CollapseContent>
-        </div>
-        <div>
-          <CollapseContent nome='Promoções'>
+          <h2>Todos</h2>
+            <Prateleira nome = 'produtos' produtos={this.props.produtos}/>
+          </div>
+          <div>
+          <h2>{<LocalOffer/>} Promoções</h2> 
             <Prateleira nome = 'promocoes' produtos={this.props.promocoes}/>
-          </CollapseContent>
-        </div>
-        <div>
-          <CollapseContent nome='Favoritos'>
-             <Prateleira nome = 'favoritos' produtos={this.props.favoritos}/>
-          </CollapseContent>
-        </div>
-        <div>
-          <CollapseContent nome='Comprados'>
-           <Prateleira nome = 'comprados' produtos={this.props.comprados}/>
-          </CollapseContent>
-        </div>
+          </div>
+          <div>
+            <h2>{<FavoriteIcon/>} Favoritos</h2>
+            <Prateleira nome = 'favoritos' produtos={this.props.favoritos}/>
+          </div>
+          <div>
+            <h2>{<CheckCircleOutlineOutlined/>} Comprados</h2>
+            <Prateleira nome = 'comprados' produtos={this.props.comprados}/>
+          </div>
         </Fragment>
       )
     }

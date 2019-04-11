@@ -1,17 +1,10 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-<<<<<<< HEAD
-import Modal from 'react-bootstrap/Modal'
-
-import PrateleiraApi from '../service/PrateleiraAPI';
-
-=======
 import {Navbar, Nav, Button, Form} from 'react-bootstrap'
 import Modal from 'react-bootstrap/Modal'
 
 import PrateleiraApi from '../service/PrateleiraAPI';
 import Busca from './Busca';
->>>>>>> d45e8aec4e8dcbe0369cd2ec805856378000639d
 class Formulario extends Component {
     constructor(props) {
       super(props);  
@@ -31,7 +24,7 @@ class Formulario extends Component {
       let produto = {
         id: Math.floor(Math.random() * 11),
         title: this.titulo.value,
-        variantDescription: this.descricao.value,
+        description: this.descricao.value,
         thumbnail: {
           path: this.url.value,
           extension: undefined
@@ -55,7 +48,8 @@ class Formulario extends Component {
     }
 
     menu = () => (
-      <Navbar bg="light" expand="lg">
+      <Navbar bg="dark" variant="dark" expand="md">
+        <Navbar.Brand href="/#home">Product Comics</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
@@ -64,6 +58,7 @@ class Formulario extends Component {
         </Navbar.Collapse>
       </Navbar>
     )
+    
 
     modal = ()=> <Modal show={this.state.show} onHide={this.handleClose}>
     <Modal.Header closeButton>
@@ -74,8 +69,10 @@ class Formulario extends Component {
         <Form.Group controlId="exampleForm.ControlInput1">
             <Form.Label>Titulo do Produto</Form.Label>
             <Form.Control type="text" ref={(input)=> this.titulo = input} />
-            <Form.Label>descrição</Form.Label>
-            <Form.Control type="text" ref={(input)=> this.descricao = input} />
+            <Form.Group controlId="exampleForm.ControlTextarea1">
+              <Form.Label>Descrição</Form.Label>
+              <Form.Control as="textarea" rows="3" maxlength="250" placeHolder="máximo 250 characters" ref={(input)=> this.descricao = input} />
+          </Form.Group>
             <Form.Label>URL da imagem</Form.Label>
             <Form.Control type="text" ref={(input)=> this.url = input} />
         </Form.Group>

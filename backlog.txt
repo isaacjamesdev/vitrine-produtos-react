@@ -9,11 +9,13 @@
 -modal no form - DONE
 --------TO DO--------
 -TextArea na desrição do form
+-tamanho fix no modal - DONE
+-limites de caracters - DONE
+-ler mais - DONE
+-Menu - DONE
+-prateleiras titles - DONE
 *Card
-    -tamanho fix no modal
     -avisar em qual prateleira estar
-    -limites de caracters
-    -ler mais
-
-
+    -Feedback no ícone da prateleira
+    -feedback no modal ao mover
 -colocar PropTypes

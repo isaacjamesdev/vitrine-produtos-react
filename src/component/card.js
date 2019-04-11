@@ -1,13 +1,18 @@
 import React, {Component} from 'react';
 import Card from 'react-bootstrap/Card'
-import {Button, ModalBody} from 'react-bootstrap'
+import {Button, ModalBody, ModalFooter} from 'react-bootstrap'
 import {connect} from 'react-redux'
 import Modal from 'react-bootstrap/Modal'
 // material-ui
 import IconButton from '@material-ui/core/IconButton';
-import FavoriteIcon from '@material-ui/icons/FavoriteBorder';
-import BookMarkIcon from '@material-ui/icons/BookmarkBorder';
-import MoneyOff from '@material-ui/icons/MoneyOffOutlined';
+import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
+import Favorite from '@material-ui/icons/Favorite';
+
+import LocalOfferBorder from '@material-ui/icons/LocalOfferOutlined';
+import LocalOffer from '@material-ui/icons/LocalOffer'
+
+import CheckCircleBorder from '@material-ui/icons/CheckCircleOutline';
+import CheckCircle from '@material-ui/icons/CheckCircle';
 
 // my-imports
 import PrateleiraApi from '../service/PrateleiraAPI'
@@ -19,13 +24,17 @@ import PrateleiraApi from '../service/PrateleiraAPI'
     super(props);  
     this.state = {
       show: false,
-      ModalCard: false
+      ModalCard: false,
+      inComprados: false,
+      inFavoritos: false,
+      inPromocoes: false
     };
     this.handleShow = this.handleShow.bind(this);
     this.handleClose = this.handleClose.bind(this);
     this.handleCloseModalCard = this.handleCloseModalCard.bind(this);
     this.handleShowModalCard = this.handleShowModalCard.bind(this)
     this.MyModal = this.MyModal.bind(this);
+    this.statusProduto = this.statusProduto.bind(this);
   }
 
   handleClose() {
@@ -44,47 +53,60 @@ import PrateleiraApi from '../service/PrateleiraAPI'
     this.setState({ ModalCard: false });
   }
 
+  statusProduto(produto, prateleira){
+    prateleira.find(item => item.id === produto.id);
+  }
+
+  componentDidMount(){
+    console.log('vida desde pequeno humilhado');
+    console.log(this.state.inFavoritos);
+  }
   MyModal = ()=>
-    <Modal style={{height: '60vw'}} show={this.state.ModalCard} onHide={()=> this.setState({ModalCard: false})}>
-      <ModalBody >
-          <Card>
-            <Card.Img variant="top" src={this.props.tratarPath(this.props.produto.thumbnail)}/>
+    <Modal show={this.state.ModalCard} onHide={()=> this.setState({ModalCard: false})}>
+      <ModalBody style={{maxHeight: '40vw', overflow: 'auto'}}>
+          <Card style={{minHeight: '15vw', maxHeight: '23vw'}}>
+            <Card.Header>
+              <Card.Img style={{minHeight: '20vw', maxHeight: '20vw', maxWidth: '15vw', display:"flex", margin:"0 auto"}} variant="top" src={this.props.tratarPath(this.props.produto.thumbnail)}/>
+            </Card.Header>
             <Card.Body>
-              <Card.Title className="title" >
+              <Card.Title>
                 {this.props.produto.title}
               </Card.Title>
               <Card.Text>
-              {this.props.produto.description}
+                {this.props.produto.description}
               </Card.Text>
-              <IconButton className="icon" onClick={() => {this.handleShow(); this.props.moveTo(this.props.produto, 'PROMOCOES')}}>
-                <FavoriteIcon />
-              </IconButton>
-              <IconButton className="icon" onClick={() => {this.handleShow(); this.props.moveTo(this.props.produto, 'FAVORITOS')}}>
-                <BookMarkIcon /> 
-              </IconButton>
-              <IconButton className="icon" onClick={() => {this.handleShow(); this.props.moveTo(this.props.produto, 'COMPRADOS')}}>
-                <MoneyOff />
-              </IconButton>
             </Card.Body>
           </Card>
         </ModalBody>
+        <ModalFooter style={{justifyContent: "center"}}>
+          <IconButton className="icon" onClick={() => {this.handleShow(); this.props.moveTo(this.props.produto, 'FAVORITOS'); this.setState({inFavoritos: !this.state.inFavoritos})}}>
+            {this.statusProduto(this.props.produto, this.props.favoritos) ? <Favorite color="error"/> : <FavoriteBorder/>}
+          </IconButton>
+          <IconButton className="icon" onClick={() => {this.handleShow(); this.props.moveTo(this.props.produto, 'PROMOCOES')}}>
+            <LocalOffer /> 
+          </IconButton>
+          <IconButton className="icon" onClick={() => {this.handleShow(); this.props.moveTo(this.props.produto, 'COMPRADOS')}}>
+            <CheckCircle />
+          </IconButton>
+        </ModalFooter>
     </Modal>
 
   render(){
     return (
       <div>
-        <Card className="card">
-          <Card.Img variant="top" src={this.props.tratarPath(this.props.produto.thumbnail)}  onClick={()=> this.handleShowModalCard()}/>
+        <Card style={{minHeight: '30vw', maxHeight: '30vw'}} className="card">
+          <Card.Img style={{minHeight: '23vw', maxHeight: '23vw'}} variant="top" src={this.props.tratarPath(this.props.produto.thumbnail)}  onClick={()=> this.handleShowModalCard()}/>
           <Card.Body>
             <Card.Title className="title" >{this.props.produto.title}</Card.Title>
-            <IconButton className="icon" onClick={() => {this.handleShow(); this.props.moveTo(this.props.produto, 'PROMOCOES')}}>
-              <FavoriteIcon />
+            <IconButton className="icon" onClick={() => {this.handleShow(); this.props.moveTo(this.props.produto, 'FAVORITOS'); this.setState({inFavoritos: !this.state.inFavoritos})}}>
+            {this.statusProduto(this.props.produto, this.props.favoritos) ? <Favorite color="error"/> : <FavoriteBorder/>}
+             
             </IconButton>
-            <IconButton className="icon" onClick={() => {this.handleShow(); this.props.moveTo(this.props.produto, 'FAVORITOS')}}>
-              <BookMarkIcon /> 
+            <IconButton className="icon" onClick={() => {this.handleShow(); this.props.moveTo(this.props.produto, 'PROMOCOES')}}>
+              <LocalOffer /> 
             </IconButton>
             <IconButton className="icon" onClick={() => {this.handleShow(); this.props.moveTo(this.props.produto, 'COMPRADOS')}}>
-              <MoneyOff />
+              <CheckCircleBorder />
             </IconButton>
           </Card.Body>
           <Modal show={this.state.show} onHide={this.handleClose}>
@@ -104,7 +126,13 @@ import PrateleiraApi from '../service/PrateleiraAPI'
   } 
 
  }
-  
+
+ const mapStateToProps = state =>({
+  promocoes: state.prateleira.promocoes,
+  comprados: state.prateleira.comprados,
+  favoritos: state.prateleira.favoritos,
+  produtos: state.prateleira.produtos
+})
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -112,10 +140,10 @@ const mapDispatchToProps = dispatch => {
       dispatch(PrateleiraApi.cadastrar(produto, prateleira));
     },
     tratarPath: (thumbnail) =>{
-      return thumbnail.extension ? thumbnail.path+'/portrait_xlarge.'+ thumbnail.extension : thumbnail.path
+      return thumbnail.extension ? thumbnail.path+'.'+ thumbnail.extension : thumbnail.path
     }
   }
 }
 
 
-export default connect(null, mapDispatchToProps)(MediaCard)
+export default connect(mapStateToProps, mapDispatchToProps)(MediaCard)
