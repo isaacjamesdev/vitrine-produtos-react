@@ -3,7 +3,7 @@ const hash = '2d744ffccd666aacf33f89b0eefeeb06'
 const key = '52cd47ed61eebd8f62bdf9d8922a64f8'
 const baseUrl = 'http://gateway.marvel.com/v1/public/'
 const parameter = 'comics'
-const limit = "20"
+const limit = "60"
 const url = `${baseUrl}${parameter}?limit=${limit}&ts=1&apikey=${key}&hash=${hash}`
 
 export default class PrateleiraApi{

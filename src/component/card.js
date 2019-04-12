@@ -24,17 +24,13 @@ import PrateleiraApi from '../service/PrateleiraAPI'
     super(props);  
     this.state = {
       show: false,
-      ModalCard: false,
-      inComprados: false,
-      inFavoritos: false,
-      inPromocoes: false
+      ModalCard: false
     };
     this.handleShow = this.handleShow.bind(this);
     this.handleClose = this.handleClose.bind(this);
     this.handleCloseModalCard = this.handleCloseModalCard.bind(this);
     this.handleShowModalCard = this.handleShowModalCard.bind(this)
     this.MyModal = this.MyModal.bind(this);
-    this.statusProduto = this.statusProduto.bind(this);
   }
 
   handleClose() {
@@ -53,9 +49,7 @@ import PrateleiraApi from '../service/PrateleiraAPI'
     this.setState({ ModalCard: false });
   }
 
-  statusProduto(produto, prateleira){
-    prateleira.find(item => item.id === produto.id);
-  }
+ 
 
   componentDidMount(){
     console.log('vida desde pequeno humilhado');
@@ -79,8 +73,8 @@ import PrateleiraApi from '../service/PrateleiraAPI'
           </Card>
         </ModalBody>
         <ModalFooter style={{justifyContent: "center"}}>
-          <IconButton className="icon" onClick={() => {this.handleShow(); this.props.moveTo(this.props.produto, 'FAVORITOS'); this.setState({inFavoritos: !this.state.inFavoritos})}}>
-            {this.statusProduto(this.props.produto, this.props.favoritos) ? <Favorite color="error"/> : <FavoriteBorder/>}
+          <IconButton className="icon" onClick={() => {this.handleShow(); this.props.moveTo(this.props.produto, 'FAVORITOS')}}>
+            <FavoriteBorder/>
           </IconButton>
           <IconButton className="icon" onClick={() => {this.handleShow(); this.props.moveTo(this.props.produto, 'PROMOCOES')}}>
             <LocalOffer /> 
@@ -99,11 +93,10 @@ import PrateleiraApi from '../service/PrateleiraAPI'
           <Card.Body>
             <Card.Title className="title" >{this.props.produto.title}</Card.Title>
             <IconButton className="icon" onClick={() => {this.handleShow(); this.props.moveTo(this.props.produto, 'FAVORITOS'); this.setState({inFavoritos: !this.state.inFavoritos})}}>
-            {this.statusProduto(this.props.produto, this.props.favoritos) ? <Favorite color="error"/> : <FavoriteBorder/>}
-             
+              <FavoriteBorder/>
             </IconButton>
             <IconButton className="icon" onClick={() => {this.handleShow(); this.props.moveTo(this.props.produto, 'PROMOCOES')}}>
-              <LocalOffer /> 
+              <LocalOffer/> 
             </IconButton>
             <IconButton className="icon" onClick={() => {this.handleShow(); this.props.moveTo(this.props.produto, 'COMPRADOS')}}>
               <CheckCircleBorder />
