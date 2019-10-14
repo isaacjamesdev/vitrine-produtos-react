@@ -17,4 +17,4 @@ Para executar a aplicação devemos abrir o prompt de comando no diretório do p
 
 
 ## Autor
-* **Isaac James** - [isaacjameses](https://github.com/isaacjameses)
+* **Isaac James** - [isaacjamesdev](https://github.com/isaacjamesdev)
