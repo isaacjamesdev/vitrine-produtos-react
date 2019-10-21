@@ -9,6 +9,8 @@ import CollapseContent from "./CollapseComponente";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import * as ActionCreator from "../store/action/ActionCreator";
+
+// PARA API
 import Axios from "axios";
 const hash = "2d744ffccd666aacf33f89b0eefeeb06";
 const key = "52cd47ed61eebd8f62bdf9d8922a64f8";

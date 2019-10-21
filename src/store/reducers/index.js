@@ -1,7 +1,7 @@
-import {combineReducers} from 'redux';
+import { combineReducers } from "redux";
 
-import prateleira from './prateleira';
+import prateleira from "./prateleira";
 
 export default combineReducers({
-    prateleira
-})
+  prateleira: prateleira
+});

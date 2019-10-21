@@ -3,7 +3,8 @@ import Card from "react-bootstrap/Card";
 import { Button } from "react-bootstrap";
 import { connect } from "react-redux";
 import Modal from "react-bootstrap/Modal";
-import * as ActionCreator from "../store/action/ActionCreator";
+
+import PrateleiraApi from "../service/PrateleiraAPI";
 
 class MediaCard extends Component {
   constructor(props) {
@@ -84,14 +85,10 @@ const tratarPath = thumbnail => {
     : thumbnail.path;
 };
 
-const cadastrar = (produto, prateleira) => {
-  return dispatch => dispatch(ActionCreator.cadastrar(produto, prateleira));
-};
-
 const mapDispatchToProps = dispatch => {
   return {
     moveTo: (produto, prateleira) => {
-      dispatch(cadastrar(produto, prateleira));
+      dispatch(PrateleiraApi.cadastrar(produto, prateleira));
     }
   };
 };
