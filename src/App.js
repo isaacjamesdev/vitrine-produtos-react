@@ -1,23 +1,18 @@
-import React from 'react';
-import {Provider} from 'react-redux';
-import {Container} from 'react-bootstrap';
-import store from './store';
+import React from "react";
+import { Provider } from "react-redux";
+import { Container } from "react-bootstrap";
+import store from "./store";
 // My-Components;
-import Vitrine from './component/vitrine';
-import Cabecalho from './component/Cabecalho';
-import Busca from './component/Busca';
+import Application from "./component/aplication";
 
-
-const App = ()=>{
+const App = () => {
   return (
     <Provider store={store}>
-        <Container>
-          <Cabecalho/>
-          <Busca/>
-          <Vitrine/>
-        </Container>
+      <Container>
+        <Application />
+      </Container>
     </Provider>
-  )
-}
+  );
+};
 
 export default App;
